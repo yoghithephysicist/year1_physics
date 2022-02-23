@@ -9,12 +9,12 @@ def sigmavolsph(r, sigma):
     return sigma * 4 * math.pi * (r ** 2)
 
 
-def calcvolprll(x, y, z):
-    return x * y * z
+def calcvolprll(d, h):
+    return (d ** 2) * h
 
 
-def sigmavolprll(x, y, z, sigma):
-    return math.sqrt(((sigma * y * z) ** 2) + ((sigma * x * z) ** 2) + ((sigma * x * y) ** 2))
+def sigmavolprll(d, h, sigma):
+    return math.sqrt(((2 * sigma * d * h) ** 2) + ((sigma * (d ** 2)) ** 2))
 
 
 def calcvolclnd(r, h):
@@ -23,6 +23,14 @@ def calcvolclnd(r, h):
 
 def sigmavolclnd(r, h, sigma):
     return math.sqrt(((sigma * 2 * r * h) ** 2) + ((sigma * (r ** 2)) ** 2))
+
+
+def calcvolesaprism(d, h):
+    return (math.sqrt(3) / 2) * (d ** 2) * h
+
+
+def sigmavolesaprism(d, h, sigma):
+    return math.sqrt(((math.sqrt(3) * d * h * sigma) ** 2) + (((math.sqrt(3) / 2) * (d ** 2) * sigma) ** 2))
 
 
 def calcdens(m, v):
@@ -51,10 +59,21 @@ sigma_raggio = float(input("Sigma Diametro [mm]: ")) / 2
 result3 = f"Volume Cilindro [mm^3] = {calcvolclnd(raggio, alt)} +/ {sigmavolclnd(raggio, alt, sigma_raggio)}"
 print(result3)'''
 
-'''massa = float(input("Massa [g]: "))
+massa = float(input("Massa [g]: "))
 volume = float(input("Volume [mm^3]: "))
 sigma_massa = float(input("Sigma Massa [g]: "))
 sigma_volume = float(input("Sigma Volume [mm^3]: "))
-result4 = f"Densità Sfera [g/mm^3] = {calcdens(massa, volume)} +/ {sigmadens(massa, volume, sigma_massa, sigma_volume)}"
-print(result4)'''
+result4 = f"Densità [g/mm^3] = {calcdens(massa, volume)} +/ {sigmadens(massa, volume, sigma_massa, sigma_volume)}"
+print(result4)
 
+'''diametro = float(input("Diametro [mm]: "))
+alt = float(input("Altezza [mm]: "))
+sigma_diametro = float(input("Sigma Diametro [mm]: "))
+result5 = f"Volume Parallelepipedo [mm^3] = {calcvolprll(diametro, alt)} +/ {sigmavolprll(diametro, alt, sigma_diametro)}"
+print(result5)'''
+
+'''diametro = float(input("Diametro [mm]: "))
+alt = float(input("Altezza [mm]: "))
+sigma_diametro = float(input("Sigma Diametro [mm]: "))
+result6 = f"Volume Cilindro [mm^3] = {calcvolesaprism(diametro, alt)} +/ {sigmavolesaprism(diametro, alt, sigma_diametro)}"
+print(result6)'''
